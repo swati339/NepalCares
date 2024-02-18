@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation Forum</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+/* public/styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+#existing-stories, #post-story-form {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- views/forums.ejs -->
+
+<h1>Forums</h1>
+
+<div id="existing-stories">
+  <h2>Existing Stories</h2>
+  <ul>
+    <% stories.forEach(story => { %>
+      <li><strong><%= story.username %>:</strong> <%= story.content %></li>
+    <% }); %>
+    <!-- views/forums.ejs -->
+
+<%- include('layout', { title: 'Forums' }) %>
+
+<!-- Content specific to the forums page goes here -->
+<!-- For example, the existing stories and the form to post a new story -->
+
+
+  </ul>
+</div>
+
+<div id="post-story-form">
+  <h2>Post Your Story</h2>
+  <form action="/forums/post-story" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+
+    <label for="content">Story Content:</label>
+    <textarea id="content" name="content" required></textarea>
+    <br>
+
+    <button type="submit">Post Story</button>
+  </form>
+</div>
+
+</body>
+</html>
